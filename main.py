@@ -1,7 +1,14 @@
 import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from pprint import pprint
 
+import pandas
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+
+def read_wine_file(file_path):
+    excel_data_df = pandas.read_excel(file_path)
+    pprint(excel_data_df)
 
 
 def main():
@@ -20,4 +27,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    read_wine_file('wine.xlsx')
