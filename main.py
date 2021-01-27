@@ -6,9 +6,12 @@ import pandas
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
-def read_wine_file(file_path):
+def read_wine_file_to_dict(file_path):
     excel_data_df = pandas.read_excel(file_path)
-    pprint(excel_data_df)
+    # pprint(excel_data_df)
+    wines = excel_data_df.to_dict(orient='records')
+    pprint(wines)
+    return wines
 
 
 def main():
@@ -17,8 +20,10 @@ def main():
         autoescape=select_autoescape(['html', 'xml'])
     )
     template = env.get_template('template.html')
+
     age = datetime.datetime.now().year - 1921
-    rendered_page = template.render(age=age)
+    wines = read_wine_file_to_dict('wine.xlsx')
+    rendered_page = template.render(age=age, wines=wines)
 
     with open('index.html', 'w', encoding="utf8") as file:
         file.write(rendered_page)
@@ -27,5 +32,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    read_wine_file('wine.xlsx')
+    main()
