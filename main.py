@@ -26,9 +26,9 @@ def main():
     for wine in wines:
         wines_categories[wine['Категория']].append(wine)
 
-    pprint(wines_categories)
+    # pprint(wines_categories)
 
-    rendered_page = template.render(age=age, wines=wines)
+    rendered_page = template.render(age=age, wines_categories=wines_categories)
 
     with open('index.html', 'w', encoding="utf8") as file:
         file.write(rendered_page)
