@@ -21,12 +21,10 @@ def main():
     template = env.get_template('template.html')
 
     age = datetime.datetime.now().year - 1921
-    wines = read_wine_file_to_dict('wine2.xlsx')
+    wines = read_wine_file_to_dict('wine3.xlsx')
     wines_categories = collections.defaultdict(list)
     for wine in wines:
         wines_categories[wine['Категория']].append(wine)
-
-    # pprint(wines_categories)
 
     rendered_page = template.render(age=age, wines_categories=wines_categories)
 
