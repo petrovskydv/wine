@@ -4,3 +4,4 @@ env/
 /.idea/
 /venv/
 /index.html
+/.env
